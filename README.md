@@ -60,3 +60,11 @@ To use the newly created virtual environment, you can activate it using the foll
 ```bash
 source .venv/bin/activate
 ```
+
+## Clean up Azure Resources
+
+To clean up the resources created in Azure, you can run the following command:
+
+```bash
+azd down --force --purge
+```

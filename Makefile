@@ -19,31 +19,3 @@ setup-local-env: ## 🐍 Create a virtual environment and install dependencies
 
 	@echo "🐍 Setting up notebooks filtering"
 	nbstripout --install --attributes .gitattributes
-
-chat-hello-world-flow: ## 💬 Run the hello world flow in terminal
-	@echo "🚀 Running the hello world flow..."
-	@echo "🚀 Creating the connection..."
-	
-	# Reads the .env file, removes any comments (lines starting with #), and formats the remaining lines as VARNAME=value strings
-	export $(shell cat .env | sed 's/#.*//g' | xargs) \
-	. .venv/bin/activate; pf connection create -f app/flows/hello-world-chat/azure_openai.yaml --set api_key=$$AZURE_OPENAI_API_KEY api_base=$$AZURE_OPENAI_ENDPOINT;
-	
-	@echo "🚀 Connection created!"
-	
-	@echo "🚀 Running the flow..."
-	
-	. .venv/bin/activate; pf flow test --flow app/flows/hello-world-chat --interactive
-
-chat-hello-world-app: ## 🖥️  Run the hello world flow as local server app
-	@echo "🚀 Running the hello world app..."
-	@echo "🚀 Creating the connection..."
-	
-	# Reads the .env file, removes any comments (lines starting with #), and formats the remaining lines as VARNAME=value strings
-	export $(shell cat .env | sed 's/#.*//g' | xargs) \
-	. .venv/bin/activate; pf connection create -f app/flows/hello-world-chat/azure_openai.yaml --set api_key=$$AZURE_OPENAI_API_KEY api_base=$$AZURE_OPENAI_ENDPOINT;
-	
-	@echo "🚀 Connection created!"
-	
-	@echo "🚀 Running the server..."
-	
-	. .venv/bin/activate; pf flow serve --source app/flows/hello-world-chat/ --port 8080 --host localhost
