@@ -165,5 +165,9 @@ app/output/*.json
 
 .DS_Store
 
-# Workshop workig files
-workshop/
+# Promptflow
+.env
+__pycache__/
+.promptflow/*
+!.promptflow/flow.tools.json
+.runs/

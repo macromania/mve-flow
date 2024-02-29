@@ -1,0 +1,54 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+inputs:
+  question:
+    type: string
+  pdf_url:
+    type: string
+outputs:
+  output_prompt:
+    type: string
+    reference: ${echo_my_prompt.output}
+nodes:
+- name: sourcing
+  type: python
+  source:
+    type: code
+    path: components/sourcing/sourcing_tool.py
+  inputs:
+    question: ${inputs.question}
+    pdf_url: ${inputs.pdf_url}
+- name: ingestion
+  type: python
+  source:
+    type: code
+    path: components/ingestion/ingestion_tool.py
+  inputs:
+    question: ${sourcing.question}
+    pdf_url: ${sourcing.pdf_url}
+- name: search
+  type: python
+  source:
+    type: code
+    path: components/search/search_tool.py
+  inputs:
+    question: ${ingestion.question}
+    pdf_url: ${ingestion.pdf_url}
+- name: preprocess
+  type: python
+  source:
+    type: code
+    path: components/preprocess/preprocess_tool.py
+  inputs:
+    question: ${search.question}
+- name: generate_prompt
+  type: llm
+  source:
+    type: code
+    path: components/generation/answer.jinja2
+  inputs:
+    deployment_name: chat
+    max_tokens: 256
+    temperature: 0.7
+    question: ${preprocess.question}
+  connection: open_ai_connection
+  api: chat

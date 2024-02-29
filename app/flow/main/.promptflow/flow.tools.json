@@ -1,0 +1,113 @@
+{
+  "package": {},
+  "code": {
+    "hello.jinja2": {
+      "type": "prompt",
+      "inputs": {
+        "text": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "description": "Please replace the template with your own prompt.",
+      "source": "hello.jinja2"
+    },
+    "hello.py": {
+      "type": "python",
+      "inputs": {
+        "input1": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "hello.py",
+      "function": "my_python_tool"
+    },
+    "components/sourcing/sourcing_tool.py": {
+      "type": "python",
+      "inputs": {
+        "pdf_url": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "components/sourcing/sourcing_tool.py",
+      "function": "main"
+    },
+    "components/ingestion/ingestion_tool.py": {
+      "type": "python",
+      "inputs": {
+        "pdf_url": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "components/ingestion/ingestion_tool.py",
+      "function": "main"
+    },
+    "components/search/search_tool.py": {
+      "type": "python",
+      "inputs": {
+        "pdf_url": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "components/search/search_tool.py",
+      "function": "main"
+    },
+    "components/generation/answer.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "components/generation/answer.jinja2"
+    },
+    "components/preprocess/preprocess_tool.py": {
+      "type": "python",
+      "inputs": {
+        "pdf_url": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "components/preprocess/preprocess_tool.py",
+      "function": "main"
+    }
+  }
+}

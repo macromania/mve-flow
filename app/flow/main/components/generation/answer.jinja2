@@ -1,0 +1,15 @@
+system:
+You are a helpful assistant. 
+
+- If you don't have an answer, you can reply with "I don't know".
+- Answer with markdown format
+
+{% for item in chat_history %}
+user:
+{{item.inputs.question}}
+assistant:
+{{item.outputs.answer}}
+{% endfor %}
+
+user:
+{{question}}
