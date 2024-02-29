@@ -32,4 +32,4 @@ run-main-flow-app: ## 🖥️  Run main flow as local server app
 	
 	@echo "🚀 Running the server..."
 	
-	. .venv/bin/activate; pf flow serve --source app/flow/main/ --port 8080 --host localhost
+	. .venv/bin/activate; pf flow serve --source app/flow/main/ --port 8080 --host localhost --skip-open-browser

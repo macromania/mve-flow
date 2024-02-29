@@ -75,6 +75,25 @@ Create a connection for the main flow using the following command:
 pf connection create -f app/flow/main/connections/azure_openai.yaml --set api_key=$AZURE_OPENAI_API_KEY api_base=$AZURE_OPENAI_ENDPOINT
 ```
 
+## Sending Queries to Main Flow
+
+Run following command to start the main flow as a service:
+
+```bash
+make run-main-flow-app
+```
+
+Send your question to `/score` endpoint:
+
+```bash
+curl http://localhost:8080/score \
+--data '
+    {"pdf_url": "https://reports.shell.com/sustainability-report/2022/_assets/downloads/shell-sustainability-report-2022.pdf",
+    "question": "How did they perform compared to 2022?"}' \
+-X POST \
+-H "Content-Type: application/json"
+```
+
 ## Clean up Azure Resources
 
 To clean up the resources created in Azure, you can run the following command:
