@@ -61,6 +61,20 @@ To use the newly created virtual environment, you can activate it using the foll
 source .venv/bin/activate
 ```
 
+**5. Create Connection for Main Flow:**
+
+Export `.env` content to environment variables:
+
+```bash
+export $(cat .env | xargs)
+```
+
+Create a connection for the main flow using the following command:
+
+```bash
+pf connection create -f app/flow/main/connections/azure_openai.yaml --set api_key=$AZURE_OPENAI_API_KEY api_base=$AZURE_OPENAI_ENDPOINT
+```
+
 ## Clean up Azure Resources
 
 To clean up the resources created in Azure, you can run the following command:

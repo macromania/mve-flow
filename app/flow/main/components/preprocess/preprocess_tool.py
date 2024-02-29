@@ -1,8 +1,11 @@
 from promptflow import tool
+from typing import List
 
 @tool
-def main(pdf_url:str, question: str) -> dict[str, str]:
+def main(pdf_url:str, question: str):
+    context: List[str] = []
+
     return {
-        "pdf_url": pdf_url,
+        "context": context,
         "question": question
     }

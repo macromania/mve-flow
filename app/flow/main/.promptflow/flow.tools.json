@@ -79,7 +79,7 @@
     "components/generation/answer.jinja2": {
       "type": "llm",
       "inputs": {
-        "chat_history": {
+        "context": {
           "type": [
             "string"
           ]

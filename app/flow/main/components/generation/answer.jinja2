@@ -3,13 +3,12 @@ You are a helpful assistant.
 
 - If you don't have an answer, you can reply with "I don't know".
 - Answer with markdown format
+- Use context provided to generate accurate response
+- Do not use any external resources
+- Do not generate answer outside of the context provided
 
-{% for item in chat_history %}
-user:
-{{item.inputs.question}}
-assistant:
-{{item.outputs.answer}}
-{% endfor %}
+context:
+{{context}}
 
 user:
 {{question}}
