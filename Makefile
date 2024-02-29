@@ -19,3 +19,17 @@ setup-local-env: ## 🐍 Create a virtual environment and install dependencies
 
 	@echo "🐍 Setting up notebooks filtering"
 	nbstripout --install --attributes .gitattributes
+
+run-main-flow-app: ## 🖥️  Run main flow as local server app
+	@echo "🚀 Running main app..."
+	@echo "🚀 Creating the connection..."
+	
+	# Reads the .env file, removes any comments (lines starting with #), and formats the remaining lines as VARNAME=value strings
+	export $(shell cat .env | sed 's/#.*//g' | xargs) \
+	. .venv/bin/activate; pf connection create -f app/flow/main/connections/azure_openai.yaml --set api_key=$$AZURE_OPENAI_API_KEY api_base=$$AZURE_OPENAI_ENDPOINT;
+	
+	@echo "🚀 Connection created!"
+	
+	@echo "🚀 Running the server..."
+	
+	. .venv/bin/activate; pf flow serve --source app/flow/main/ --port 8080 --host localhost
